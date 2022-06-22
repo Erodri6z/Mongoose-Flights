@@ -15,9 +15,21 @@ function newFlight(req, res) {
         title: "Add Flights"
     })
 }
-
-
+function show(req, res){
+    Flight.findById(req.params.id)
+    .then(flight => {
+        res.render("flights/show", {
+            flight,
+            title: "Flight Details"
+        })
+    })
+    .catch(err =>{
+        console.log(err)
+        res.redirect("/")
+    })
+}
 export {
     index,
-    newFlight as new
+    newFlight as new,
+    show
 }
