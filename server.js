@@ -1,3 +1,4 @@
+import "dotenv/config.js"
 import createError from 'http-errors'
 import express from 'express'
 import path from 'path'
@@ -7,7 +8,7 @@ import('./config/database.js')
 
 // import routers
 import { router as indexRouter } from './routes/index.js'
-import { router as usersRouter } from './routes/users.js'
+import { router as flightsRouter } from './routes/flights.js'
 
 // set up app
 const app = express()
@@ -31,7 +32,7 @@ app.use(
 
 // mounted routers
 app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/flights', flightsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
