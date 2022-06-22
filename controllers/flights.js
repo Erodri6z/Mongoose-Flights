@@ -15,6 +15,12 @@ function newFlight(req, res) {
         title: "Add Flights"
     })
 }
+function create(req, res){
+    Flight.create(req.body)
+    .then(flight =>{
+        res.redirect('/flights')
+    })
+}
 function show(req, res){
     Flight.findById(req.params.id)
     .then(flight => {
@@ -31,5 +37,6 @@ function show(req, res){
 export {
     index,
     newFlight as new,
-    show
+    show,
+    create,
 }
