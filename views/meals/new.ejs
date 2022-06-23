@@ -4,9 +4,9 @@
 <main>
     <h1><%= title %></h1>
 
-    <form action="/meals" method="POST">
+    <form action="/meals" method="POST" autocomplete="off">
         <label for="name-input">Meal:</label>
-        <input type="text" name="name" id="name-input">
+        <input type="text" name="name" id="name-input" >
         <button type="submit">Add Meal</button>
     </form>     
     <select>
