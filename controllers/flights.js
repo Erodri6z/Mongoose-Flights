@@ -1,4 +1,5 @@
 import { Flight } from "../models/flight.js"
+import { Meal } from "../models/meal.js"
 
 function index(req, res){
     Flight.find({})
@@ -82,6 +83,26 @@ function update(req, res){
         res.redirect("/")
     })
 }
+function createTicket(req, res){
+    for(let key in req.body) {
+        if(req.body[key]=== '') {
+            delete req.body[key]
+        }
+    }
+    Flight.findById(req.params.id)
+    .then(flight => {
+        flight.tickets.push(req.body)
+        flight.save()
+        .then(() => {
+            res.redirect(`/flights/${flight._id}`)
+        })
+    })
+    .catch(err =>{
+        console.log(err)
+        res.redirect("/")
+    })
+
+}
 export {
     index,
     newFlight as new,
@@ -90,5 +111,6 @@ export {
     deleteFlight as delete,
     edit,
     update,
+    createTicket,
 
 }
